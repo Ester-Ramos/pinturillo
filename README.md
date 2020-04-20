@@ -4,5 +4,5 @@ Este repo está para actualizar el corpus español (de España) para usar en el 
 ## Cómo colaboro
 
 1. Añade palabras al archivo separadas por comas.
-2. Comprueba que no están repetidas
-3. Commitea los cambios
+2. Comprueba que no están repetidas: y ponla o no la pongas a tu discreción
+3. Commitea los cambios en master (a lo loco)
