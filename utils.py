@@ -74,31 +74,3 @@ def guardar_corpus(corpus):
     with open('nuevo_corpus.txt','w') as archivo:
         for palabra in corpus:
             archivo.write(palabra+"\n")
-
-    
-    
-    
-
-# --------- DEPRECATED ---------------
-
-def elimina_duplicados_legacy(corpus):
-    """ DEPRECATED: Elimina palabras duplicadas en el corpus. Utiliza una expresión regular que busca .1, .2, .3, etc
-        Recibe una lista de Python
-        Devuelve una lista de Python
-     """
-    duplicadoRe = re.compile(r"\w+\.[0-9]")
-    nuevo_corpus = []
-    for palabra in corpus:
-        if duplicadoRe.fullmatch(palabra):
-            print("Eliminando palabra duplicada:", palabra.split(".")[0])
-        else:
-            nuevo_corpus.append(palabra)
-    return nuevo_corpus
-
-def cargar_corpus_legacy(archivo):
-    """ DEPRECATED: Carga un corpus con Pandas para trabajar con él
-        Recibe un nombre de archivo/ruta
-        Devuelve una lista de Python. Los duplicados llevan un .X con X = 1,2,3...
-    """
-    import pandas as pd
-    return [x.strip() for x in pd.read_csv(archivo).columns]
