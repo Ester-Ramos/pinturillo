@@ -30,5 +30,4 @@ if __name__ == '__main__':
     corpus = utils.incluir_lista(corpus, palabras_nuevas)
     
     # Escribimos el archivo con _nuevo en el nombre.
-    with open('corpus_nuevo.txt','w') as archivo:
-        archivo.write(", ".join(corpus))
+    utils.guardar_corpus(corpus)

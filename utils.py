@@ -1,6 +1,10 @@
 #!/usr/bin/python
 
 import re
+import random
+import datetime
+from os.path import join, exists
+from os import makedirs
 
 
 def cargar_corpus(archivo):
@@ -10,8 +14,17 @@ def cargar_corpus(archivo):
     """
     output = []
     with open(archivo,'r') as f:
-        for palabra in f.read().split(','):
-            output.append(palabra.strip())
+        contenido = f.read()
+        if ',' in contenido:
+            separador = ','
+        elif '\n' in contenido:
+            separador = '\n'
+        else:
+            raise Exception("Separador desconocido para "+archivo+"\nPor favor, utiliza comas o saltos de página.")
+        for palabra in contenido.split(separador):
+            palabra = palabra.strip()
+            if palabra != '':
+                output.append(palabra)
     return output
         
     
@@ -31,6 +44,42 @@ def incluir_lista(corpus, palabras_nuevas):
         if palabra not in corpus:
             corpus.append(palabra)
     return corpus
+
+def _grupo_al_azar(corpus, numero=100):
+    """ Genera una lista de palabras escogidas al azar. Por defecto coge 100 palabras.
+        Recibe: [1] un corpus, [2] el tamaño de la lista deseada (opcional).
+        Devuelve la lista de palabras seleccionadas.
+    """
+    output = []
+    for x in range(int(numero)):
+        n = random.randint(0, (len(corpus)-1))
+        output.append(corpus[n])
+    return output
+
+def guardar_sublista(lista):
+    """ Guarda la sublista en disco dentro de una carpeta indicando el numero de palabras que contiene.
+        Recibe: una lista de palabras
+    """
+    nombre_archivo = str(datetime.datetime.now()).replace(" ", "_").replace(":","-")+".txt"
+    carpeta = "listas_"+str(len(lista))
+    ruta = join(carpeta,nombre_archivo)
+    if not exists(carpeta):
+        makedirs(carpeta)
+    with open(ruta,'w') as archivo:
+        for palabra in lista:
+            archivo.write(palabra+",")
+    
+def guardar_corpus(corpus):
+    # Guarda el nuevo corpus
+    with open('nuevo_corpus.txt','w') as archivo:
+        for palabra in corpus:
+            archivo.write(palabra+"\n")
+
+    
+    
+    
+
+# --------- DEPRECATED ---------------
 
 def elimina_duplicados_legacy(corpus):
     """ DEPRECATED: Elimina palabras duplicadas en el corpus. Utiliza una expresión regular que busca .1, .2, .3, etc
