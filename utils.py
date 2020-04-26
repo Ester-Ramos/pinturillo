@@ -27,7 +27,6 @@ def cargar_corpus(archivo):
                 output.append(palabra)
     return output
         
-    
 def elimina_duplicados(corpus):
     """ Elimina palabras duplicadas en el corpus
         Recibe una lista de Python
@@ -60,9 +59,14 @@ def guardar_sublista(lista):
     """ Guarda la sublista en disco dentro de una carpeta indicando el numero de palabras que contiene.
         Recibe: una lista de palabras
     """
-    nombre_archivo = str(datetime.datetime.now()).replace(" ", "_").replace(":","-")+".txt"
-    carpeta = "listas_"+str(len(lista))
-    ruta = join(carpeta,nombre_archivo)
+    nombres = cargar_corpus('calles.txt')
+    #nombre_archivo = str(datetime.datetime.now()).replace(" ", "_").replace(":","-")+".txt"
+    while True:
+        nombre_archivo = nombres[random.randint(0,len(nombres)-1)].replace(" ","_")+".txt"
+        carpeta = "listas_"+str(len(lista))
+        ruta = join(carpeta,nombre_archivo)
+        if not exists(ruta):
+            break
     if not exists(carpeta):
         makedirs(carpeta)
     with open(ruta,'w') as archivo:
