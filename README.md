@@ -17,7 +17,7 @@ Si tienes un archivo con palabras separadas por comas, puedes utilizar `maspalab
 Generará un archivo llamado corpus_nuevo.txt con las palabras añadidas y sin duplicados.
 
 ## Cómo generar listas de palabras
-`$ $ python generador.py <nº de listas> <longitud de las listas>`
+`$ python generador.py <nº de listas> <longitud de las listas>`
 
 Donde `<nº de listas>` es el número de listas que se quieren generar y `<longitud de las listas>` es el número de palabras de cada lista.
 
