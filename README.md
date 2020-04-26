@@ -9,7 +9,7 @@ Este repo está para actualizar el corpus español (de España) para usar en el 
 3. Commitea los cambios en master (a lo loco)
 
 ### De forma automática
-Si tienes un archivo con palabras separadas por comas, puedes utilizar `maspalabras.py`, que es un script de Python (requiere Pandas).
+Si tienes un archivo con palabras separadas por comas, puedes utilizar `maspalabras.py`, que es un script de Python.
 
 #### Uso
 `$ python maspalabras.py <mis-lista-de-palabras>.txt`
